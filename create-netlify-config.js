@@ -5,7 +5,7 @@ const path = require('path');
 const netlifyConfig = `
 [build]
   base = "client"
-  publish = "client/build"
+  publish = "build"
   command = "npm install --legacy-peer-deps && npm run build"
 
 [[redirects]]
