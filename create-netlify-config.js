@@ -1,12 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-// Define Netlify configuration
-const netlifyConfig = `
-[build]
+// Define the Netlify configuration content
+const netlifyConfig = `[build]
   base = "client"
   publish = "build"
   command = "npm install --legacy-peer-deps && npm run build"
+
+[functions]
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/api/*"
@@ -20,12 +22,16 @@ const netlifyConfig = `
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+[dev]
+  command = "npm run start"
+  targetPort = 3000
 `;
 
-// Define the file path
+// Define the path for netlify.toml
 const filePath = path.join(__dirname, 'netlify.toml');
 
-// Write the file
+// Write the configuration to netlify.toml
 fs.writeFileSync(filePath, netlifyConfig, 'utf8');
 
-console.log('✅ netlify.toml file created successfully!');
+console.log('✅ netlify.toml file has been successfully created!');

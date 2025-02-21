@@ -1,8 +1,10 @@
-
 [build]
   base = "client"
-  publish = "client/build"
+  publish = "build"
   command = "npm install --legacy-peer-deps && npm run build"
+
+[functions]
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/api/*"
@@ -16,3 +18,7 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+[dev]
+  command = "npm run start"
+  targetPort = 3000
